@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+div class="splash">
+        <div class="pure-g-r">
+            <div class="pure-u-1">
+                <div class="l-box splash-text">
+                    <h1 class="splash-head">
+                        Cursos Simplemooc
+                    </h1>
+                    <h2 class="splash-subhead">
+                        Abaixo lista de cursos da plataforma
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+
+    {% for course in courses %}
+    <div class="pure-g-r content-ribbon">
+        <div class="pure-u-1-3">
+            <div class="l-box">
+                <a href="">
+                {% if course.image %}
+                    <img src="{{course.image.url }}" alt=>
+                {% else %}
+                    <img src="{% static 'img/no_img.jpeg' %}" alt=>
+                {% endif %}
+                </a>
+
+            </div>
+        </div>
+        <div class="pure-u-2-3">
+            <div class="l-box">
+                <h4>{{ course.name }}</h4>
+
+                    {{ course.description|linebreaks }}
+
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="pure-g-r">
+            <div class="pure-u-1">
+                <div class="l-box splash-text">
+                    <p>
+                        Nenhum Curso está Disponivel na plataforma
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
